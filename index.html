@@ -2,23 +2,40 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Cayman</title>
+    <title>Receipt List</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <link rel="stylesheet" href="css/normalize.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/cayman.css">
+    <script type="javascript">
+      
+    </script>
   </head>
   <body>
     <section class="page-header">
-      <h1 class="project-name">Cayman</h1>
-      <h2 class="project-tagline">A responsive theme for your project on GitHub Pages</h2>
-      <a href="#" class="btn">View on GitHub</a>
-      <a href="#" class="btn">Download .zip</a>
-      <a href="#" class="btn">Download .tar.gz</a>
+      <h1 class="project-name">CS5456: Receipt Reader</h1>
+      <h2 class="project-tagline">Coolest reader and a tagger</h2>
     </section>
 
     <section class="main-content">
+      <blockquote>
+        <p>My Receipts <div id="addReceipt"><span>ADD</span></div></p>
+        <div style="display:none">
+          <textarea id="addMerchant" />
+          <textarea id="addAmount" />
+          <input type="button" id="saveReceipt" title="Save" src="jQuery"/>
+          <input type="button" id="cancelReceipt" title="Cancel" src="jQuery"/>
+        </div>
+      </blockquote>
+      <div id="receiptList">
+        <div class="receipt">
+          <div class="time"></div>
+          <div class="merchant"></div>
+          <div class="amount"></div>
+          <div class="tags"></div> <!-- New endpoint using Receipt Id and get all tags-->
+        </div>
+      </div>
       <p>Text can be <strong>bold</strong>, <em>italic</em>, or <del>strikethrough</del>. <a href="https://github.com">Links</a> should be blue with no underlines (unless hovered over).</p>
 
       <p>There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs.</p>
