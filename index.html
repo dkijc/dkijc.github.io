@@ -11,34 +11,35 @@
     <script src="scripts/jquery-3.2.1.min.js"></script>
     <script>
       $(function () {
-       $('#addReceipt').click(function(){
-        $('#addbox').fadeToggle();
-       });
-
-       var items = [];
-       $.getJSON("http://ec2-18-220-143-53.us-east-2.compute.amazonaws.com:8080/receipts", function( data ) {
-          $.each( data, function( key, val ) {
-            if(key === 'id') {
-              $.getJSON("http://ec2-18-220-143-53.us-east-2.compute.amazonaws.com:8080/tags/receipt/" + key, function(data){
-                $.each( data, function( key, val ) {
-                    items.push( "<span class='tags'>" + val + "</span>" );
-                });
-              });
-            }
-            items.push( "<span class='time'>" + val.created + "</span>" );
-            items.push( "<span class='merchant'>" + val.merchantName + "</span>" );
-            items.push( "<span class='amount'>" + val.value + "</span>" );
-            jQuery('<div/>', {
-             "class": 'receipt',
-             "html": items.join(""),
-             "click": function() {
-               jQuery(this).toggleClass("test");
-             }}).appendTo('#receiptList');
-          });
-
+        $('#addReceipt').click(function(){
+          $('#addbox').fadeToggle();
         });
-        console.log($('.receipt'));
       
+        var receiptList = $('#receiptList');
+        var items = [];
+        $.getJSON("http://localhost:8080/receipts", function( data ) {
+          var countData = data.length;
+          $.each( data, function( key, val ) {
+            var receipt = jQuery('<div/>', {
+             "class": "receipt",
+             "id": val.id
+             });
+       
+            receipt.append("<span class='time'>" + val.created + "</span>");
+            receipt.append("<span class='merchant'>" + val.merchantName + "</span>" );
+            receipt.append("<span class='amount'>" + val.value + "</span></br>" );
+            receipt.appendTo(receiptList);
+          });
+        });
+        
+        for(var i = 1; i < receiptList[0].children.length + 1; i++) {
+          console.log(i)
+          (function(i) {
+            $.getJSON("http://localhost:8080/tags/receipt/" + i , function(data){
+            
+            });   
+          })(i);
+        }
       });
     </script>
   </head>
@@ -58,14 +59,7 @@
           <input type="button" id="cancelReceipt" value="Cancel"/>
         </div>
       </blockquote>
-      <div id="receiptList">
-        <div class="receipt">
-          <div class="time"></div>
-          <div class="merchant"></div>
-          <div class="amount"></div>
-          <div class="tags"></div> <!-- New endpoint using Receipt Id and get all tags-->
-        </div>
-      </div>
+      <div id="receiptList"></div>
       <!--p>Text can be <strong>bold</strong>, <em>italic</em>, or <del>strikethrough</del>. <a href="https://github.com">Links</a> should be blue with no underlines (unless hovered over).</p>
 
       <p>There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs.</p>
