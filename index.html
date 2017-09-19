@@ -32,14 +32,14 @@
           });
         });
         
-        for(var i = 1; i < receiptList[0].children.length + 1; i++) {
-          console.log(i)
-          (function(i) {
-            $.getJSON("http://localhost:8080/tags/receipt/" + i , function(data){
+        // for(var i = 1; i < receiptList[0].children.length + 1; i++) {
+        //   console.log(i)
+        //   (function(i) {
+        //     $.getJSON("http://localhost:8080/tags/receipt/" + i , function(data){
             
-            });   
-          })(i);
-        }
+        //     });   
+        //   })(i);
+        // }
       });
     </script>
   </head>
@@ -51,7 +51,7 @@
 
     <section class="main-content">
       <blockquote>
-        <p>My Receipts <span id="addReceipt">ADD</span></p>
+        <p>My Receipts </br><input id="addReceipt" type="button" cursor="pointer" value="ADD" /></p>
         <div id="addbox" style="display:none">
           <input type="text" id="addMerchant" style="padding:4px; margin:4px;" /></br>
           <input type="text" id="addAmount" style="padding:4px; margin:4px;" /></br>
