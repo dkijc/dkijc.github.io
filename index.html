@@ -30,7 +30,7 @@
           $('#amount').val('')
 
           $.ajax({
-            url: "http://localhost:8080/receipts",
+            url: "http://ec2-18-221-133-204.us-east-2.compute.amazonaws.com:8080/receipts",
             type: "POST",
             data: JSON.stringify(send),
             contentType: "application/json",
@@ -44,7 +44,7 @@
         var receiptList = $('#receiptList');
         var items = [];
         
-        $.getJSON("http://localhost:8080/receipts", function(result) {
+        $.getJSON("http://ec2-18-221-133-204.us-east-2.compute.amazonaws.com:8080/receipts", function(result) {
           postGetJSON(result, getTags)
         });
 
@@ -69,7 +69,7 @@
                     tagName = $(this).val();
                     if(tagName != '') {
                       $.ajax({
-                        url: "http://localhost:8080/tags/" + tagName,
+                        url: "http://ec2-18-221-133-204.us-east-2.compute.amazonaws.com:8080/tags/" + tagName,
                         type: "PUT",
                         data: receiptInt,
                         contentType: "application/json",
